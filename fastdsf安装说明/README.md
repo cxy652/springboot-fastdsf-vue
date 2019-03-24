@@ -27,3 +27,7 @@
 `base_path=/home/mm/fastdfs/tracker  #tracker存储data和log的跟路径，必须提前创建好`   
 `port=23000 #tracker默认23000`  
 `http.server_port=80 #http端口，需要和nginx相同`  
+*   启动tracker（支持start|stop|restart）：
+`/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf start`
+*   查看tracker启动日志：进入刚刚指定的base_path(/home/mm/fastdfs/tracker)中有个logs目录，查看tracker.log文件
+*   查看端口情况：netstat -apn|grep fdfs
