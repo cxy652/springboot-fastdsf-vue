@@ -20,3 +20,10 @@
 * 执行编译：./make.sh
 * 安装：./make.sh install
 * 查看可执行命令：ls -la /usr/bin/fdfs*
+
+## 配置Tracker服务
+*   进入/etc/fdfs目录，有三个.sample后缀的文件（自动生成的fdfs模板配置文件），通过cp命令拷贝tracker.conf.sample，删除.sample后缀作为正式文件：  
+*   编辑tracker.conf：vi tracker.conf，修改相关参数
+`base_path=/home/mm/fastdfs/tracker  #tracker存储data和log的跟路径，必须提前创建好`   
+`port=23000 #tracker默认23000`  
+`http.server_port=80 #http端口，需要和nginx相同`  
