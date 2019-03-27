@@ -31,3 +31,16 @@
 `/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf start`
 *   查看tracker启动日志：进入刚刚指定的base_path(/home/mm/fastdfs/tracker)中有个logs目录，查看tracker.log文件
 *   查看端口情况：netstat -apn|grep fdfs
+##  配置Storage服务
+*   进入/etc/fdfs目录，有cp命令拷贝storage.conf.sample，删除.sample后缀作为正式文件;
+*   编辑storage.conf：vi storage.conf，修改相关参数：
+`base_path=/home/mm/fastdfs/storage   #storage存储data和log的跟路径，必须提前创建好`  
+`port=23000  #storge默认23000，同一个组的storage端口号必须一致`  
+`roup_name=group1  #默认组名，根据实际情况修改`  
+`tore_path_count=1  #存储路径个数，需要和store_path个数匹配`  
+`tore_path0=/home/mm/fastdfs/storage  #如果为空，则使用base_path`  
+`racker_server=10.122.149.211:22122 #配置该storage监听的tracker的ip和port`  
+*   启动storage（支持start|stop|restart）：  
+`/usr/bin/fdfs_storaged /etc/fdfs/storage.conf start`  
+*   查看storage启动日志：进入刚刚指定的base_path(/home/mm/fastdfs/storage)中有个logs目录，查看storage.log文件
+*   此时再查看tracker日志：发现已经开始选举，并且作为唯一的一个tracker，被选举为leader
